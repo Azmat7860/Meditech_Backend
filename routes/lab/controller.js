@@ -1,10 +1,10 @@
-import MedicalStoreService from "../../services/medicalStore.js";
+import LabService from "../../services/lab.js";
 import httpResponse from "../../utils/httpResponse.js";
 
 const controller = {
 
   register: async (req, res) => {
-    const addResponse = await MedicalStoreService.register(req.body);
+    const addResponse = await LabService.register(req.body);
     if (addResponse.message === "success") {
       return httpResponse.CREATED(res, addResponse.data);
     } else if (addResponse.message === "failed") {
@@ -16,7 +16,7 @@ const controller = {
 
   login: async (req, res) => {
     try{
-      const addResponse = await MedicalStoreService.login(req.body);
+      const addResponse = await LabService.login(req.body);
       if (addResponse.message === "success") {
         return httpResponse.SUCCESS(res, addResponse);
       } else {
@@ -30,7 +30,7 @@ const controller = {
 
   getAll: async (req, res) => {
     try {
-      const data = await MedicalStoreService.getAll();
+      const data = await LabService.getAll();
       return httpResponse.SUCCESS(res, data.data);
     } catch (error) {
       return httpResponse.INTERNAL_SERVER_ERROR(res, error);
@@ -39,7 +39,7 @@ const controller = {
 
   update: async (req, res) => {
     try{
-    const addResponse = await MedicalStoreService.update(req.params.id, req.body, {new: true} );
+    const addResponse = await LabService.update(req.params.id, req.body, {new: true} );
     return httpResponse.SUCCESS(res, addResponse.data);
 } catch (error) {
     return httpResponse.NOT_FOUND(res, error);
@@ -47,7 +47,7 @@ const controller = {
   },
   delete: async (req, res) => {
     try {
-        const addResponse = await MedicalStoreService.delete(req.params.id);   
+        const addResponse = await LabService.delete(req.params.id);   
         return httpResponse.SUCCESS(res, addResponse.data);  
     } catch (error) {
         return httpResponse.NOT_FOUND(res, error);

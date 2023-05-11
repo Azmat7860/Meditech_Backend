@@ -1,5 +1,5 @@
 import express from "express";
-import authValidation from "../../validations/doctor.validation.js";
+import authValidation from "../../validations/caretaker.validation.js";
 import validate from "../../middlewares/validate.js";
 import controller from "./controller.js";
 
