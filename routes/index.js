@@ -11,6 +11,9 @@ import labRoute from "./lab/index.js";
 import labAuthRoute from "./lab/auth.js";
 import medicalStoreRoute from "./medicalStore/index.js";
 import medicalStoreAuthRoute from "./medicalStore/auth.js";
+import blogRoute from "./blog/index.js";
+import medicineRoute from "./medicine/index.js";
+import appointmentRoute from "./appointment/index.js";
 
 
 const protectedRouter = express.Router();
@@ -22,6 +25,9 @@ protectedRouter.use("/doctor", doctorRoute);
 protectedRouter.use("/caretaker", caretakerRoute);
 protectedRouter.use("/lab", labRoute);
 protectedRouter.use("/medicalStore", medicalStoreRoute);
+protectedRouter.use("/blog", blogRoute);
+protectedRouter.use("/medicine", medicineRoute);
+protectedRouter.use("/appointment", appointmentRoute);
 
 // Un-Protected Routes
 unProtectedRouter.use("/auth", authRoute);

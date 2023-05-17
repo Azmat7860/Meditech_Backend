@@ -1,17 +1,11 @@
-import CaretakerModel from "../models/caretaker.js";
+import AppointmentModel from "../models/appointment.js";
 
-const CaretakerService = {
-  login: async (body) => {
+const AppointmentService = {
+  getOne: async (id) => {
     try {
-      const savedData = await CaretakerModel.findOne({
-        email: body.email,
-        password: body.password,
-      });
-      // const token = jwt.sign({ id: data._id }, config.env.jwtSecret, {
-      //   expiresIn: "1h",
-      // });
+      const savedData = await AppointmentModel.findOne(id);
       if (savedData) {
-        return { message: "success", check:"Caretaker", data: savedData , token: "token"};
+        return { message: "success", data: savedData };
       }else{
         return { message: "error" };
       }
@@ -21,9 +15,9 @@ const CaretakerService = {
     }
   },
 
-  register: async (body) => {
+  add: async (body) => {
     try {
-      const savedData = await CaretakerModel.create(body);
+      const savedData = await AppointmentModel.create(body);
       if (savedData) {
         return { message: "success", data: savedData };
       }
@@ -32,19 +26,9 @@ const CaretakerService = {
     }
   },
 
-  getOne: async (id) => {
-    try {
-        const data = await CaretakerModel.findById(id);
-
-        return { message: "success", data };
-    } catch (error) {
-        return { message: "error", data: error.message };
-    }
-},
-
   getAll: async () => {
     try {
-      const data = await CaretakerModel.find();
+      const data = await AppointmentModel.find();
 
       return { message: "success", data };
     } catch (error) {
@@ -54,7 +38,7 @@ const CaretakerService = {
 
   update: async (id,body) => {
     try {
-      const savedData = await CaretakerModel.findByIdAndUpdate(id, body);
+      const savedData = await AppointmentModel.findByIdAndUpdate(id, body);
       if (savedData) {
         return { message: "success", data: savedData };
       }
@@ -64,7 +48,7 @@ const CaretakerService = {
   },
   delete: async (id) => {
     try {
-      const savedData = await CaretakerModel.findByIdAndDelete(id);
+      const savedData = await AppointmentModel.findByIdAndDelete(id);
       if (savedData) {
         return { message: "success", data: savedData };
       }
@@ -74,4 +58,4 @@ const CaretakerService = {
   },
 };
 
-export default CaretakerService;
+export default AppointmentService;

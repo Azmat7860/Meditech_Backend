@@ -13,5 +13,9 @@ const schema = Schema({
     type: String, 
     required: true 
   },
+  blog_image:{
+    type: String,
+    required: true
+  }
 });
 export default mongoose.model("Blog", schema);

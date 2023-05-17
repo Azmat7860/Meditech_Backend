@@ -13,7 +13,7 @@ export default async function expressLoader({ app }) {
   app.use(express.json())
   app.use(bodyParser.json())
 
-  app.use("/api", authenticate)
+  // app.use("/api", authenticate)
 
   app.use("/api", protectedRouter)
   app.use("/", unProtectedRouter)

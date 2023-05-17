@@ -28,6 +28,15 @@ const controller = {
       }
   },
 
+  getOne: async (req, res) => {
+    try {
+      const data = await DoctorService.getOne(req.params.id);
+      return httpResponse.SUCCESS(res, data.data);
+    } catch (error) {
+      return httpResponse.INTERNAL_SERVER_ERROR(res, error);
+    }
+  },
+
   getAll: async (req, res) => {
     try {
       const data = await DoctorService.getAll();

@@ -7,7 +7,15 @@ const DoctorService = {
         email: body.email,
         password: body.password,
       });
-        return { message: "success", data: savedData };
+      // const token = jwt.sign({ id: data._id }, config.env.jwtSecret, {
+      //   expiresIn: "1h",
+      // });
+      if (savedData) {
+        return { message: "success", check:"Doctor", data: savedData, token: "token" };
+      }else{
+        return { message: "error" };
+      }
+       
     } catch (error) {
       return { message: "error", data: "Invalid Email and Password!" };
     }
@@ -23,6 +31,15 @@ const DoctorService = {
       return { message: "error", data: error.message };
     }
   },
+  getOne: async (id) => {
+    try {
+        const data = await DoctorModel.findById(id);
+
+        return { message: "success", data };
+    } catch (error) {
+        return { message: "error", data: error.message };
+    }
+},
 
   getAll: async () => {
     try {
