@@ -1,10 +1,10 @@
-import MedicineServices from "../../services/medicine.js";
+import BlogServices from "../../services/blog.js";
 import httpResponse from "../../utils/httpResponse.js";
 
 const controller = {
   getAll: async (req, res) => {
     try {
-      const data = await MedicineServices.getAll();
+      const data = await BlogServices.getAll();
       return httpResponse.SUCCESS(res, data.data);
     } catch (error) {
       return httpResponse.INTERNAL_SERVER_ERROR(res, error);
@@ -12,7 +12,7 @@ const controller = {
   },
   getOne: async (req, res) => {
     try {
-      const data = await MedicineServices.getOne(req.params.id);
+      const data = await BlogServices.getOne(req.params.id);
       return httpResponse.SUCCESS(res, data.data);
     } catch (error) {
       return httpResponse.INTERNAL_SERVER_ERROR(res, error);
@@ -20,7 +20,7 @@ const controller = {
   },
 
   add: async (req, res) => {
-    const addResponse = await MedicineServices.add(req.body, req.file.path);
+    const addResponse = await BlogServices.add(req.body, req.file.path);
     if (addResponse.message === "success") {
       return httpResponse.CREATED(res, addResponse.data);
     } else if (addResponse.message === "failed") {
@@ -33,7 +33,7 @@ const controller = {
   update: async (req, res) => {
     let addResponse;
     if (req.file) {
-      addResponse = await MedicineServices.update(
+      addResponse = await BlogServices.update(
         req.params.id,
         req.body,
         req.file.path
@@ -50,7 +50,7 @@ const controller = {
 
   delete: async (req, res) => {
     try {
-      const addResponse = await MedicineServices.delete(req.params.id);
+      const addResponse = await BlogServices.delete(req.params.id);
       return httpResponse.SUCCESS(res, addResponse.data);
     } catch (error) {
       return httpResponse.NOT_FOUND(res, error);

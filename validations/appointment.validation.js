@@ -9,9 +9,9 @@ export default {
 
     add: {
         body: joi.object().keys({
-            description: joi.string(),
-            appointment_type: joi.string().valid('video', 'physical').required(),
-            user_id: joi.string().required(),
+            patient_name: joi.string().required(),
+            phone: joi.string().required(),
+            appointment_type: joi.string().valid('video', 'physical'),
             doctor_id: joi.string().required(),
         }),
     },
@@ -21,9 +21,9 @@ export default {
             id: joi.string().required(),
         }),
         body: joi.object().keys({
-            description: joi.string(),
-            appointment_type: joi.string().valid('video', 'physical').required(),
-            user_id: joi.string().required(),
+            patient_name: joi.string().required(),
+            phone: joi.string().required(),
+            appointment_type: joi.string().valid('video', 'physical'),
             doctor_id: joi.string().required(),
         }),
     },

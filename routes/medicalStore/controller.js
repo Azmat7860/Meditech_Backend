@@ -37,7 +37,7 @@ const controller = {
   },
   getAll: async (req, res) => {
     try {
-      const data = await MedicalStoreService.getAll();
+      const data = await MedicalStoreService.getAll(req.query);
       return httpResponse.SUCCESS(res, data.data);
     } catch (error) {
       return httpResponse.INTERNAL_SERVER_ERROR(res, error);

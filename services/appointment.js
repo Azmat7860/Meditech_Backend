@@ -29,7 +29,6 @@ const AppointmentService = {
   getAll: async () => {
     try {
       const data = await AppointmentModel.find();
-
       return { message: "success", data };
     } catch (error) {
       return { message: "error", data: error.message };

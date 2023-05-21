@@ -22,7 +22,7 @@ const UserService = {
     try {
       const savedData = await UserModel.create(body);
       if (savedData) {
-        return { message: "success", data: savedData };
+        return { message: "success", data: savedData};
       }
     } catch (error) {
       return { message: "error", data: error.message };

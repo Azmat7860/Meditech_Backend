@@ -32,6 +32,7 @@ const controller = {
       return httpResponse.INTERNAL_SERVER_ERROR(res, error);
     }
   },
+ 
   update: async (req, res) => {
     try {
       const addResponse = await AppointmentService.update(
