@@ -5,7 +5,7 @@ import controller from "./controller.js";
 import authenticate from "../../middlewares/authenticate.js";
 
 const router = express.Router();
-router.get("/", authenticate, controller.getAll);
+router.get("/", controller.getAll);
 router.patch('/:id', authenticate,  validate(authValidation.update), controller.update);
 router.delete('/:id', authenticate, validate(authValidation.id),  controller.delete);
 

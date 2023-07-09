@@ -4,7 +4,9 @@ import httpResponse from "../../utils/httpResponse.js";
 const controller = {
   getAll: async (req, res) => {
     try {
-      const data = await BlogServices.getAll();
+      const limit = parseInt(req.query.limit) || 6;
+      const skip = parseInt(req.query.skip) || 0;
+      const data = await BlogServices.getAll(limit, skip, req.query);
       return httpResponse.SUCCESS(res, data.data);
     } catch (error) {
       return httpResponse.INTERNAL_SERVER_ERROR(res, error);

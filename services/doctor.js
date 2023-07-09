@@ -35,6 +35,7 @@ const DoctorService = {
       return { message: "error", data: error.message };
     }
   },
+  
   getOne: async (id) => {
     try {
       const data = await DoctorModel.findById(id);
@@ -45,7 +46,9 @@ const DoctorService = {
     }
   },
 
-  getAll: async (query) => {
+
+
+  getAll: async (limit, skip,query) => {
     try {
       const filter = {};
       if (query.name) {
@@ -100,7 +103,7 @@ const DoctorService = {
           }
         }
       }
-      const data = await DoctorModel.find(filter).sort(sort);
+      const data = await DoctorModel.find(filter).limit(limit).skip(skip).sort(sort);
       return { message: "success", data };
     } catch (error) {
       return { message: "error", data: error.message };

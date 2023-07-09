@@ -1,4 +1,6 @@
+import mongoose from "mongoose";
 import AppointmentModel from "../models/appointment.js";
+import DoctorModel from "../models/doctor.js";
 
 const AppointmentService = {
   getOne: async (id) => {
@@ -51,6 +53,48 @@ const AppointmentService = {
       if (savedData) {
         return { message: "success", data: savedData };
       }
+    } catch (error) {
+      return { message: "error", data: error.message };
+    }
+  },
+
+  getDoctor: async () => {
+    try {
+      const data = await AppointmentModel.aggregate([
+        {
+          $lookup: {
+            from: "doctors",
+            localField: "doctor_id",
+            foreignField: "_id",
+            as: "DoctorAppointments",
+          },
+        },
+      ]);
+      return { message: "success", data };
+    } catch (error) {
+      return { message: "error", data: error.message };
+    }
+  },
+
+  getAppointmentByDoctorId: async (id) => {
+    try {
+      const data = await DoctorModel.aggregate([
+
+        {
+          $match: {
+            _id: new mongoose.Types.ObjectId(id)
+          },
+        },
+        {
+          $lookup: {
+            from: "appointments",
+            localField: "_id",
+            foreignField: "doctor_id",
+            as: "Appointments",
+          },
+        },
+      ]);
+      return { message: "success", data };
     } catch (error) {
       return { message: "error", data: error.message };
     }

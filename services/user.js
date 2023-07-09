@@ -12,7 +12,9 @@ const UserService = {
       const token = jwt.sign({ id: data._id }, config.env.jwtSecret, {
       expiresIn: "1h",
     });
-      return { message: "success", token };
+    if (data) {
+      return { message: "success", check:"Patient", data: data, token };
+    }
     } catch (error) {
       return { message: "error", data: "Invalid Email and Password!" };
     }

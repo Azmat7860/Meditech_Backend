@@ -3,21 +3,21 @@ const Schema = mongoose.Schema;
 const schema = Schema({
   name: { 
     type: String, 
-    required: true,
+    // required: true,
   },
   email: { 
     type: String, 
-    required: true, 
+    // required: true, 
     maxlength: 100 
   },
   password: { 
     type: String, 
-    required: true,
+    // required: true,
     minlength: 6
   },
   phone: { 
     type: String, 
-    required: true
+    // required: true
   },
   address: { 
     type: String, 

@@ -63,6 +63,24 @@ const controller = {
       return httpResponse.NOT_FOUND(res, error);
     }
   },
+
+  getDoctor: async (req, res) => {
+    try {
+      const addResponse = await AppointmentService.getDoctor();
+      return httpResponse.SUCCESS(res, addResponse.data);
+    } catch (error) {
+      return httpResponse.INTERNAL_SERVER_ERROR(res, error);
+    }
+  },
+  getAppointmentByDoctorId: async (req, res) => {
+    try {
+      const addResponse = await AppointmentService.getAppointmentByDoctorId(req.params.id);
+      console.log(addResponse)
+      return httpResponse.SUCCESS(res, addResponse.data);
+    } catch (error) {
+      return httpResponse.INTERNAL_SERVER_ERROR(res, error);
+    }
+  },
 };
 
 export default controller;
